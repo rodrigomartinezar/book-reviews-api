@@ -1,10 +1,28 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { User } from './user/entity/user.entity';
+import { ORMConfig } from 'config/orm_config';
 
 @Module({
-  imports: [UserModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mssql',
+      host: ORMConfig.host,
+      port: ORMConfig.port,
+      username: ORMConfig.username,
+      password: ORMConfig.password,
+      database: ORMConfig.database,
+      entities: [User],
+      synchronize: true,
+      options: {
+        trustServerCertificate: true,
+      },
+    }),
+    UserModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
