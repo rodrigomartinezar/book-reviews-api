@@ -5,7 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { User } from './user/entity/user.entity';
+import { Author } from './author/entity/author.entity';
 import { ORMConfig } from 'config/orm_config';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -16,10 +18,11 @@ import { ORMConfig } from 'config/orm_config';
       username: ORMConfig.username,
       password: ORMConfig.password,
       database: ORMConfig.database,
-      entities: [User],
+      entities: [User, Author],
       synchronize: true,
     }),
     UserModule,
+    AuthorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

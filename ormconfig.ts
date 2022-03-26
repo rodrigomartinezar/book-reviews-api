@@ -1,4 +1,5 @@
 import { User } from './src/user/entity/user.entity';
+import { Author } from './src/author/entity/author.entity';
 import { ORMConfig } from './config/orm_config';
 
 export default {
@@ -8,10 +9,10 @@ export default {
   username: ORMConfig.username,
   password: ORMConfig.password,
   database: ORMConfig.database,
-  entities: [User],
+  entities: [User, Author],
   synchronize: true,
   options: {
-    trustServerCertificate: true
+    trustServerCertificate: true,
   },
   seeds: ['src/db/seeding/seeds/**/*{.ts,.js}'],
   factories: ['src/db/seeding/factories/**/*{.ts,.js}'],
