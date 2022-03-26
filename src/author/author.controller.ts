@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { AuthorService } from './author.service';
 import { Author } from './entity/author.entity';
 
-@Controller('users')
+@Controller('authors')
 export class AuthorController {
   constructor(private authorService: AuthorService) {}
 
@@ -17,8 +17,8 @@ export class AuthorController {
     return this.authorService.findAll();
   }
 
-  @Get('getUser')
-  async findOne(@Query('userId') id: number): Promise<Author> {
+  @Get('getAuthor')
+  async findOne(@Query('authorId') id: number): Promise<Author> {
     return this.authorService.findOne(id);
   }
 }
