@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import 'reflect-metadata';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -17,9 +18,6 @@ import { ORMConfig } from 'config/orm_config';
       database: ORMConfig.database,
       entities: [User],
       synchronize: true,
-      options: {
-        trustServerCertificate: true,
-      },
     }),
     UserModule,
   ],
